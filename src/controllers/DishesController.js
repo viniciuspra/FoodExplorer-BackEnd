@@ -1,16 +1,22 @@
 const knex = require("../database/knex");
+const DiskStorage = require("../providers/diskStorage");
 const AppError = require("../utils/AppError");
 
 class DishesController {
   async create(request, response) {
-    const { name, description, price, ingredients, image_url } = request.body;
+    const { name, description, price, ingredients } = request.body;
     const user_id = request.user.id;
+    const imageFilename = request.file.filename;
+
+    const diskStorage = new DiskStorage();
+
+    const filename = await diskStorage.saveFile(imageFilename);
 
     const [dish_id] = await knex("dishes").insert({
       name,
       description,
       price,
-      image_url,
+      image_url: filename,
       user_id,
     });
 
@@ -28,13 +34,23 @@ class DishesController {
   }
 
   async update(request, response) {
-    const { name, description, price, image_url } = request.body;
+    const { name, description, price } = request.body;
     const { id } = request.params;
+    const imageFilename = request.file.filename;
+
+    const diskStorage = new DiskStorage();
 
     const dish = await knex("dishes").where({ id }).first();
+
     if (!dish) {
       throw new AppError("Prato não encontrado!");
     }
+
+    if (dish.image_url) {
+      await diskStorage.deleteFile(dish.image_url);
+    }
+
+    const filename = await diskStorage.saveFile(imageFilename)
 
     await knex("dishes")
       .where({ id })
@@ -42,7 +58,7 @@ class DishesController {
         name: name || dish.name,
         description: description || dish.description,
         price: price || dish.price,
-        image_url: image_url || dish.image_url,
+        image_url: filename || dish.image_url
       });
 
     return response.json();
