@@ -13,9 +13,9 @@ const upload = multer(uploadConfig.MULTER)
 
 dishesRoutes.use(ensureAuthenticated)
 
-dishesRoutes.post('/', ensureIsAdmin ,upload.single("image_url"),dishesController.create)
+dishesRoutes.post('/', ensureIsAdmin, upload.single("image_url"),dishesController.create)
 dishesRoutes.get('/', dishesController.index)
-dishesRoutes.put('/:id', ensureIsAdmin ,upload.single("image_url"),dishesController.update)
+dishesRoutes.put('/:id', ensureIsAdmin, upload.single("image_url"), dishesController.update)
 dishesRoutes.get('/:id', dishesController.show)
 dishesRoutes.delete('/:id', dishesController.delete)
 
