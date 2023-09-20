@@ -20,7 +20,7 @@
 
 
 ## Sobre o Projeto 📖
-A API do FoodExplorer desempenha um papel fundamental ao fornecer funcionalidades essenciais para a sua aplicação, capacitando o seu restaurante fictício.
+A API do FoodExplorer desempenha um papel fundamental ao fornecer funcionalidades essenciais para a sua aplicação, capacitando o seu restaurante.
 
 ### Funcionalidades Principais
 - Criação, atualização e exclusão de pratos com informações detalhadas, como imagem, nome, categoria, descrição, ingredientes e preço.
