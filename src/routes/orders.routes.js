@@ -1,4 +1,4 @@
-const { Router } = require('express')
+const { Router } = require("express");
 
 const OrdersController = require("../controllers/OrdersController");
 
@@ -16,4 +16,4 @@ orderRoutes.put("/:id", ensureIsAdmin, ordersController.update);
 orderRoutes.get("/", ordersController.index);
 orderRoutes.delete("/:id", ordersController.delete);
 
-module.exports = orderRoutes
+module.exports = orderRoutes;

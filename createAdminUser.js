@@ -27,8 +27,7 @@ const createAdminUser = async () => {
   }
 };
 
-createAdminUser()
-  .catch((error) => {
-    console.error(error.message, error.statusCode);
-    process.exit(1);
-  });
+createAdminUser().catch((error) => {
+  console.error(error.message, error.statusCode);
+  process.exit(1);
+});

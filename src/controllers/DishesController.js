@@ -1,6 +1,7 @@
 const knex = require("../database/knex");
-const DiskStorage = require("../providers/diskStorage");
 const AppError = require("../utils/AppError");
+
+const DiskStorage = require("../providers/diskStorage");
 
 class DishesController {
   async create(request, response) {
@@ -11,6 +12,17 @@ class DishesController {
     const diskStorage = new DiskStorage();
 
     const filename = await diskStorage.saveFile(imageFilename);
+
+    if (
+      !name ||
+      !description ||
+      !price ||
+      !ingredients ||
+      !category ||
+      !imageFilename
+    ) {
+      throw new AppError("Campos obrigatórios não preenchidos.");
+    }
 
     const [dish_id] = await knex("dishes").insert({
       name,
@@ -40,6 +52,10 @@ class DishesController {
     const { id } = request.params;
 
     const diskStorage = new DiskStorage();
+
+    if (!id) {
+      throw new AppError("ID do prato não fornecido.");
+    }
 
     const dish = await knex("dishes").where({ id }).first();
 
@@ -81,6 +97,10 @@ class DishesController {
 
   async show(request, response) {
     const { id } = request.params;
+
+    if (!id) {
+      throw new AppError("ID do prato não fornecido.");
+    }
 
     const dish = await knex("dishes").where({ id }).first();
     const ingredients = await knex("ingredients")
@@ -139,6 +159,10 @@ class DishesController {
 
   async delete(request, response) {
     const { id } = request.params;
+
+    if (!id) {
+      throw new AppError("ID do prato não fornecido.");
+    }
 
     await knex("dishes").where({ id }).delete();
 
