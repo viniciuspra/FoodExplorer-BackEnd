@@ -5,13 +5,13 @@
 </p>
 
 <p align="center">
-  <a href="tecnologias-utilizadas">Tecnologias Utilizadas</a> |
-  <a href="instalação">Instalação</a> |
-  <a href="configuração">Configuração</a> |
-  <a href="uso">Uso</a> |
-  <a href="deploy">Deploy</a> |
-  <a href="front-end">Front-End</a> |
-  <a href="licença">Licença</a>
+  <a href="#tecnologias-utilizadas">Tecnologias Utilizadas</a> |
+  <a href="#instalação">Instalação</a> |
+  <a href="#configuração">Configuração</a> |
+  <a href="#uso">Uso</a> |
+  <a href="#deploy">Deploy</a> |
+  <a href="#front-end">Front-End</a> |
+  <a href="#licença">Licença</a>
 </p>
 
 <p align="center">
